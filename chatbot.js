@@ -12,7 +12,7 @@ var confirm = document.getElementById("confirmation");
 var help = document.getElementById("helpBox");
 var helpBtn = document.getElementById("helpButton");
 var trainingArea = document.getElementById("trainArea");
-var botTalk = ["Hello! I hope you have a good day!","I am fine, thanks!","I have no name, but my creators name is Anuj Upadhyay!","42","I was created in december, 2018.","I am not human, I am a robot."];
+var botTalk = ["Hola, espero que estes teniendo buen dia", "Me encuentro bien, gracias", "No tengo nombre pero mis creadores se llaman Daniela, Mateo y Daniel", "42", "Fui creado en 2020","No soy humano, soy un robot"];
 var divArr=[];
 var delayVar=0;
 
@@ -71,10 +71,7 @@ else if(divArr[y].style.bottom=="106%"){
 
 
 }
-/*
-newDiv("green","Who are you?");
-newDiv("orange","I am a bot.");
-*/
+
 //***********Machine learning**************
 var net = new brain.NeuralNetwork();
 var trainData = [];
@@ -83,18 +80,18 @@ var remainingLength = 0;
 var newInput;
 var commands = 7;
 
-//Greeting
+//Saludos
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,0,1,0,0,0], output: {[1]: 1} }); //HI
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0], output: {[1]: 1} }); //HEY
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,0,0,1,0,0,1,0,0,1,0,1,1,1,0,0,1,0,1,1,1,0,0,1,1,1,0], output: {[1]: 1} }); //HELLO
 trainData.push({ input: [1,0,1,1,0,0,0,1,0,0,1,1,1,0], output: {[1]: 1} }); //Yo 
 																													 
-//How are you?
+//Como estas
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,0,1,1,1,0,1,0,1,0,1,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,1,1,1,1,1,1], output: {[2]: 1} }); //How are you?
 
 trainData.push({ input: [1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,1], output: {[2]: 1} }); //Are you ok?
 
-//What is your name?
+//Cual es tu nombre
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,1,1,0,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[3]: 1} }); //What is your name?
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,1,1,0,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[3]: 1} }); //Whats your name?
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,1,1,0,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[3]: 1} }); //Whats ur name?
@@ -102,21 +99,21 @@ trainData.push({ input: [1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,1,1,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,1,1,1,1,1,1], output: {[3]: 1} }); //Who are you?
 trainData.push({ input: [1,0,0,1,1,0,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[3]: 1} }); //Name?
 																																																								   
-//Meaning of life?
+//Significado de la vida
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,1,0,0,1,0,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,1,0,0,1,1,1,0,1,0,0,0,1,0,1,1,0,0,1,0,1,1,1,0,0,1,0,0,0,1,0,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[4]: 1} }); //What is the meaning of life?
 trainData.push({ input: [1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,1,0,0,1,0,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,1,0,0,1,1,1,0,1,0,0,0,1,0,1,1,0,0,1,0,1,1,1,0,0,1,0,0,0,1,0,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[4]: 1} }); //Meaning of life?
 
-//How old are you?
+//Cuantos anos tienes
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,0,1,1,1,0,1,0,1,0,1,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,1,1,1,1,1,1], output: {[5]: 1} }); //How old are you?
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[5]: 1} }); //What is your age?
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[5]: 1} }); //Whats your age?
 trainData.push({ input: [1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1], output: {[5]: 1} }); //Whats ur age?
 																																																									 
-//Are you human?
+//¿eres humano?
 trainData.push({ input: [1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,0,0,1,1,1,1,0,1,0,1,0,0,1,0,0,1,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1], output: {[6]: 1} }); //Are you human?
 trainData.push({ input: [1,0,0,0,1,1,1,1,0,1,0,1,0,0,1,0,0,1,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1], output: {[6]: 1} }); //human?
 
-//Commands to fill up the arrays with zeros. All arrays must be of same length
+//Comandos para llenar los arrays con ceros. Todos los arrays deben tener la misma longitud
 for (j=0;j<trainData.length;j++){
 	if (trainData[j].input.length > maxLength){
 		maxLength = trainData[j].input.length;
@@ -130,12 +127,12 @@ for (q=0;q<trainData.length;q++){
 	}
 }
 
-//Training
+//Entrenamiento
 net.train(trainData, {
 	log: false,
 	logPeriod: 10,
 	errorThresh: 0.0005,
-}); //Using all the training data to train the AI
+}); //Usando toda la data para entrenar el chatbot
 
 
 //Chat button
@@ -169,7 +166,7 @@ trainingArea.style.display="inline";
 });
 
 yes.addEventListener("click", function(){
-	alert("Sweet!");
+	alert("Excelente!");
    	txt.value="";
    help.style.display = "none";
 	helpBtn.style.display = "none";
@@ -177,7 +174,7 @@ yes.addEventListener("click", function(){
 })
 
 no.addEventListener("click", function(){
-	alert("Oh, I am sorry! What would be a good response to your input?");
+	alert("Lo siento, ¿Cual podria ser una buena respuesta para tu pregunta? Por favor ponla en el campo de texto");
 divArr[divArr.length-1].style.backgroundColor="#ff6666"
 help.style.display = "inline";
 helpBtn.style.display = "inline";
@@ -189,20 +186,20 @@ trainingArea.style.display="none";
 
 	newInput = textToBinary(txt.value);
 
-trainData.push({ input: newInput, output: {[commands]: 1} }); //user training data
+trainData.push({ input: newInput, output: {[commands]: 1} }); //data de entrenamiento del usuario
 
 commands = commands+1;
 
 net = new brain.NeuralNetwork();
 
-//Training the AI
+//Entrenando el chat
 net.train(trainData, {
 	log: false,
 	logPeriod: 10,
 	errorThresh: 0.0005,
 });
 
-alert("Alright! Thanks for making me smarter!");
+alert("Vale! Muchas gracias por enriquecer mi conocimiento!");
 
 	txt.value="";
 	help.value="";
@@ -211,8 +208,7 @@ alert("Alright! Thanks for making me smarter!");
 })
 
 function textToBinary(text){
-	
-	//Storing all letters as binary numbers for AI
+	//Almacenar todas las letras como numeros binarios para el entrnamiento del chat
 text = text.toUpperCase();
 	var data = [];
 	
@@ -300,10 +296,9 @@ text = text.toUpperCase();
 			data = data.concat([1,1,1,1,1,1,1]);
 		}
 	}
-	//Used the code below to be able to read long arrays
 	//console.log(data.toString());
-
-	//Fill user input array with zeros to get correct length
+	
+	//Llenar el array input del usuario con ceros para tener la longitud correcta
 	if (data.length < maxLength){
 		remainingLength = maxLength - data.length;
 		zeroArray = Array(remainingLength).fill(0);
