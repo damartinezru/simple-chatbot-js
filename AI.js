@@ -1,15 +1,7 @@
-/*AI ChatBot by Anuj Upadhyay
 
-Here is a real AI chatbot where you can train the bot yourself! Talk to it and decide wether or not its response is good!
 
-I have already given it some training data to start with.
-
-I hope you like it!
-
-*/
-alert("AI Chat Bot By Anuj Upadhyay");
-alert("click yes or No if you are satisfied with your answer");
-alert("Train Your AI");
+alert("Chat Bot ");
+alert("Entrena tu chatbot");
 window.addEventListener('load', function(){
 
 var chat = document.getElementById("chatButton");
@@ -219,6 +211,7 @@ alert("Alright! Thanks for making me smarter!");
 })
 
 function textToBinary(text){
+	
 	//Storing all letters as binary numbers for AI
 text = text.toUpperCase();
 	var data = [];
